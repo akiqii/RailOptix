@@ -67,7 +67,8 @@ RailOptix/
 │
 ├── start_dashboard.py                  # Primary FastAPI server launcher
 ├── streamlit_app.py                    # Companion Streamlit application
-├── start.bat                           # 1-Click Windows Batch Launcher
+├── index.html                          # Root Web Dashboard (Zero-dependency offline preview)
+├── start.bat                           # 1-Click Windows Batch Launcher (Auto-opens browser)
 ├── start.ps1                           # 1-Click PowerShell Launcher
 ├── requirements.txt                    # Project Python dependencies
 └── README.md                           # Comprehensive documentation
@@ -77,38 +78,27 @@ RailOptix/
 
 ## 🛠️ Quick Start Guide
 
-### 1. Prerequisites
-- Python 3.10+ installed on Windows, macOS, or Linux.
+### Option 1: 1-Click Windows Launcher (Recommended)
+Double-click `start.bat` (or run `./start.ps1` in PowerShell).
+This starts the local FastAPI optimization server and **automatically opens** your default browser to:
+👉 **`http://127.0.0.1:8080`**
 
-### 2. Install Dependencies
+### Option 2: Command Line
 ```bash
 pip install -r requirements.txt
-```
-
-### 3. Launch the Application
-
-#### Option A: 1-Click Windows Launcher
-Double-click `start.bat` or run:
-```powershell
-.\start.ps1
-```
-
-#### Option B: Terminal Command
-```bash
 python start_dashboard.py
 ```
-Open your browser at: **`http://127.0.0.1:8000`**
+Then navigate to: **`http://127.0.0.1:8080`**
 
-#### Option C: Companion Streamlit Dashboard
-```bash
-streamlit run streamlit_app.py
-```
+### Option 3: Instant Zero-Dependency File Preview (No Python Required)
+Double-click `index.html` directly from File Explorer (or open `static/index.html` in any browser: Chrome, Edge, Safari, Firefox).
+RailOptix features built-in **Offline State Hydration** that renders the complete interactive dual-line topology SVG, 2-week operational dispatch grid, 30-week master Gantt, and safety compliance KPI scorecards immediately—even without running a local web server!
 
 ---
 
 ## 🧪 Running Automated Tests
 
-Run the complete test suite (13 unit and integration tests):
+Run the complete test suite (19 unit and integration tests):
 ```bash
 python -m unittest discover -s tests
 ```
@@ -121,10 +111,9 @@ All tests pass in `< 0.5s`.
 | Evaluation Requirement | RailOptix Feature | Verification Method |
 |---|---|---|
 | **Public Test Results** | Verified `SCHEDULE_ACCESS.csv`, `SCHEDULE_OCCUPANCY.csv`, `RESULTS.csv` included directly in root directory. | Direct file inspection or click the download buttons on the top bar of the web app. |
+| **Zero-Dependency Direct File View** | Both `index.html` (root) and `static/index.html` open directly in any browser via `file:///` with full offline fallback data. | Double-click `index.html` directly from Windows Explorer. |
 | **Hidden Instance Upload** | "📁 Upload Test Instance" button on the top navbar. Accepts 8 CSV files or 1 ZIP archive. | Click "Upload Test Instance", drag/drop files, view green checklist, and click "Run AI Solver Live". |
 | **Live Schema Validation** | Validates headers, data types, foreign keys (Contracts, Predecessors, Locations). | Upload invalid files or missing files to observe real-time error logging. |
 | **Multi-Scenario Comparison** | Interactive switching between Scenario A (Strict Supply), B (Strict Schedule), C (Balanced), and 2-Week Operational View. | Click the scenario pills on the top navigation bar. |
 | **Conflict Detection & Resolution** | Detects predecessor violations, workfront limits, location capacity, and 750V live-rail buffer breaches. | Click "AI Auto-Optimize" or individual "AI Resolve Clash" buttons. |
 | **Key Variables Inspection** | Sector availability, engineer roster (certifications), and equipment allocations. | Click "⚙️ Key Variables" button in header. |
-"# RailOptix" 
-"# RailOptix" 
